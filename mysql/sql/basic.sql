@@ -15,3 +15,14 @@ ALTER TABLE member2 MODIFY COLUMN nickname varchar(100);
 
 -- 칼럼 이름 변경
 ALTER TABLE member2 CHANGE COLUMN nickname nick varchar(45);
+
+-- 컬럼 삭제
+ALTER TABLE member2 drop COLUMN nick;
+
+-- row 삭제 주의사항! 테이블 이름은 제일 마지막에 쓴다
+DELETE FROM  member_phone WHERE seq = 10;
+
+-- 데이터 수정
+-- UPDAT 테이블 이름 SET
+--  바꿀내용들
+-- WHERE 바꾸는거 선택해야됨 ex)seq=1;
