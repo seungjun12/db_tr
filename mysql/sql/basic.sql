@@ -57,3 +57,5 @@ SELECT*FROM member;
 -- WHERE 1=1
 -- AND 이름 = ""
 
+DELETE FROM member;
+
