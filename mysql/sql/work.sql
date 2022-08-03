@@ -456,3 +456,136 @@ CREATE TABLE IF NOT EXISTS `Incheon`.`purchase` (
 ENGINE = InnoDB
 ;
 
+SELECT*FROM seat;
+
+
+
+ALTER TABLE member ADD COLUMN addressCode varchar(45);
+
+CREATE TABLE IF NOT EXISTS `Incheon`.`seat` (
+  `seq` INT NOT NULL AUTO_INCREMENT,
+  `seatPlace` NVARCHAR(45) NULL COMMENT '좌석위치\n1.1루 2.3루 3.중앙 4.외야',
+  `seatGrade` VARCHAR(45) NULL COMMENT '좌석등급\n1.응원지정석, 2.의자지정석,3.테이블석,4.스카이테이블석,5.일반석 6.랜더스 라이브존 7.홈런커플존 8.외야패밀리 9.이마트바베큐존 10.초가정자 11외야 파티덱 12.몰리스 그린존',
+  `seatPrice` VARCHAR(45) NULL COMMENT '좌석가격',
+  PRIMARY KEY (`seq`))
+ENGINE = InnoDB
+;
+
+CREATE TABLE IF NOT EXISTS `Incheon`.`seatBlock` (
+  `seq` INT NOT NULL AUTO_INCREMENT,
+  `seatBlock` INT NULL COMMENT '좌석블록',
+  PRIMARY KEY (`seq`))
+ENGINE = InnoDB
+;
+
+CREATE TABLE IF NOT EXISTS `Incheon`.`seatRow` (
+  `seq` INT NOT NULL AUTO_INCREMENT,
+  `seatRow` CHAR NULL COMMENT '좌석열',
+  PRIMARY KEY (`seq`))
+ENGINE = InnoDB
+;
+
+CREATE TABLE IF NOT EXISTS `Incheon`.`seatNumber` (
+  `seq` INT NOT NULL AUTO_INCREMENT,
+  `seat_seq` INT NOT NULL,
+  `seatBlock_seq` INT NOT NULL,
+  `seatRow_seq` INT NOT NULL,
+  `seatNumber` INT NULL COMMENT '좌석번호',
+  PRIMARY KEY (`seq`),
+  INDEX `fk_seatNumber_seatBlock1_idx` (`seatBlock_seq` ASC) VISIBLE,
+  INDEX `fk_seatNumber_seatRow1_idx` (`seatRow_seq` ASC) VISIBLE,
+  INDEX `fk_seatNumber_seat1_idx` (`seat_seq` ASC) VISIBLE,
+  CONSTRAINT `fk_seatNumber_seatBlock1`
+    FOREIGN KEY (`seatBlock_seq`)
+    REFERENCES `Incheon`.`seatBlock` (`seq`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_seatNumber_seatRow1`
+    FOREIGN KEY (`seatRow_seq`)
+    REFERENCES `Incheon`.`seatRow` (`seq`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_seatNumber_seat1`
+    FOREIGN KEY (`seat_seq`)
+    REFERENCES `Incheon`.`seat` (`seq`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+;
+
+CREATE TABLE IF NOT EXISTS `Incheon`.`purchase` (
+  `seq` INT NOT NULL AUTO_INCREMENT,
+  `seatNumber_seq` INT NOT NULL,
+  `games_seq` INT NOT NULL,
+  `member_seq` INT NOT NULL,
+  `ticketPaySelect` VARCHAR(45) NULL COMMENT '결제수단',
+  `cancelDob` VARCHAR(45) NULL COMMENT '취소가능날짜',
+  `seatNumber_seq1` INT NOT NULL,
+  PRIMARY KEY (`seq`),
+  INDEX `fk_purchase_games1_idx` (`games_seq` ASC) VISIBLE,
+  INDEX `fk_purchase_member1_idx` (`member_seq` ASC) VISIBLE,
+  INDEX `fk_purchase_seatNumber1_idx` (`seatNumber_seq1` ASC) VISIBLE,
+  CONSTRAINT `fk_purchase_games1`
+    FOREIGN KEY (`games_seq`)
+    REFERENCES `Incheon`.`games` (`seq`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_purchase_member1`
+    FOREIGN KEY (`member_seq`)
+    REFERENCES `Incheon`.`member` (`seq`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_purchase_seatNumber1`
+    FOREIGN KEY (`seatNumber_seq1`)
+    REFERENCES `Incheon`.`seatNumber` (`seq`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+;
+
+SELECT*FROM seatNumber;
+
+SET foreign_key_checks =0;
+
+ALTER TABLE games ADD COLUMN who varchar(45) AFTER seq;
+
+SELECT*FROM games;
+
+SELECT*FROM purchase;
+
+
+select*FROM seatNumber;
+
+ALTER TABLE purchase CHANGE COLUMN seatNumber_seq1 seatNumber_seq INT;
+
+ALTER TABLE purchase MODIFY COLUMN member_seq int AFTER seq;
+
+ALTER TABLE purchase MODIFY COLUMN	seatNumber_seq int AFTER games_seq;
+
+CREATE TABLE IF NOT EXISTS `Incheon`.`ccg` (
+  `seq` INT NOT NULL AUTO_INCREMENT,
+  `seqOther` VARCHAR(45) NULL,
+  `ccgname` VARCHAR(45) NULL,
+  `ccguseNy` TINYINT NULL,
+  `ccgorder` INT NULL,
+  PRIMARY KEY (`seq`))
+ENGINE = InnoDB
+;
+
+CREATE TABLE IF NOT EXISTS `Incheon`.`cc` (
+  `seq` INT NOT NULL AUTO_INCREMENT,
+  `seqOther` VARCHAR(45) NULL,
+  `ccg_seq` INT NOT NULL,
+  `ccname` VARCHAR(45) NULL,
+  `ccuseNy` TINYINT NULL,
+  `ccdelNy` TINYINT NULL,
+  `ccorder` INT NULL,
+  PRIMARY KEY (`seq`),
+  INDEX `fk_cc_ccg1_idx` (`ccg_seq` ASC) VISIBLE,
+  CONSTRAINT `fk_cc_ccg1`
+    FOREIGN KEY (`ccg_seq`)
+    REFERENCES `Incheon`.`ccg` (`seq`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+;
