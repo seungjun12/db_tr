@@ -57,47 +57,6 @@ SELECT*FROM member;
 -- WHERE 1=1
 -- AND 이름 = ""
 
-DELETE FROM member;
 
-CREATE TABLE IF NOT EXISTS `Incheon`.`ccg` (
-  `seq` INT NOT NULL AUTO_INCREMENT,
-  `seqOther` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `gender` TINYINT NULL,
-  PRIMARY KEY (`seq`))
-ENGINE = InnoDB
-;
-
-CREATE TABLE IF NOT EXISTS `Incheon`.`cc` (
-  `seq` INT NOT NULL AUTO_INCREMENT,
-  `seqOther` VARCHAR(45) NULL,
-  `ccg_seq` INT NOT NULL,
-  `email` VARCHAR(45) NULL,
-  `gender` TINYINT NULL,
-  PRIMARY KEY (`seq`),
-  INDEX `fk_cc_ccg1_idx` (`ccg_seq` ASC) VISIBLE,
-  CONSTRAINT `fk_cc_ccg1`
-    FOREIGN KEY (`ccg_seq`)
-    REFERENCES `Incheon`.`ccg` (`seq`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-;
-
-CREATE TABLE IF NOT EXISTS `Incheon`.`cc` (
-  `seq` INT NOT NULL AUTO_INCREMENT,
-  `seqOther` VARCHAR(45) NULL,
-  `ccg_seq` INT NOT NULL,
-  `email` VARCHAR(45) NULL,
-  `gender` TINYINT NULL,
-  PRIMARY KEY (`seq`),
-  INDEX `fk_cc_ccg1_idx` (`ccg_seq` ASC) VISIBLE,
-  CONSTRAINT `fk_cc_ccg1`
-    FOREIGN KEY (`ccg_seq`)
-    REFERENCES `Incheon`.`ccg` (`seq`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-;
 
 
