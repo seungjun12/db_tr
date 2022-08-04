@@ -593,3 +593,5 @@ ENGINE = InnoDB
 ALTER TABLE member ADD COLUMN emailCode INT AFTER email;
 
 SELECT*FROM member;
+
+SELECT*FROM games;
