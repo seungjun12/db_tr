@@ -595,3 +595,9 @@ ALTER TABLE member ADD COLUMN emailCode INT AFTER email;
 SELECT*FROM member;
 
 SELECT*FROM games;
+
+select*from member;
+
+ALTER TABLE cc CHANGE COLUMN ccseq seq INT;
+
+ALTER TABLE ccg CHANGE COLUMN seq ccgseq INT;
