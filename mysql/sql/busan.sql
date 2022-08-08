@@ -46,12 +46,12 @@ left join memberPhone b on b.member_seq = a.seq;
 
 -- 좌석도?
 SELECT 
-	a.seatNumber
+	b.seatGrade
     ,b.seatPlace
-    ,b.seatGrade
-    ,b.seatPrice
     ,c.seatBlock
     ,d.seatRow
+    ,a.seatNumber    
+    ,b.seatPrice
 FROM seatNumber a
 left join seat b on b.seq = a.seat_seq
 left join seatBlock c on c.seq=a.seatBlock_seq
