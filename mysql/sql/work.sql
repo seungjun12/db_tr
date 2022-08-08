@@ -601,3 +601,18 @@ select*from member;
 ALTER TABLE cc CHANGE COLUMN ccseq seq INT;
 
 ALTER TABLE ccg CHANGE COLUMN seq ccgseq INT;
+
+CREATE TABLE IF NOT EXISTS `Incheon`.`teamLogo` (
+  `seq` INT NOT NULL AUTO_INCREMENT,
+  `teamLogoKiwoom` VARCHAR(45) NULL,
+  `teamLogoSsg` VARCHAR(45) NULL,
+  `teamLogoDoosan` VARCHAR(45) NULL,
+  `teamLogoIncheon` VARCHAR(45) NULL,
+  `teamLogoSeoul` VARCHAR(45) NULL,
+  PRIMARY KEY (`seq`))
+ENGINE = InnoDB
+;
+
+alter table teamLogo CHANGE COLUMN teamLogoKiwoom teamLogo varchar(45);
+
+ALTER TABLE teamLogo DROP COLUMN teamLogoSeoul; 
