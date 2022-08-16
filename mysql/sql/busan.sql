@@ -64,14 +64,15 @@ WHERE 1=1
 -- 상세 좌석 선택
 SELECT
 	a.seq
-    ,b.seatBlock
+    ,(SELECT seatBlock FROM seatBlock aa where aa.seq = a.seatBlock_seq) as seatBlock
     ,c.seatRow
     ,a.seatNumber
 FROM seatNumber a
-left join seatBlock b on b.seq = a.seatBlock_seq
+-- left join seatBlock b on b.seq = a.seatBlock_seq
 left join seatRow c on c.seq = a.seatRow_seq     
+ORDER BY
+	 a.seq asc
 ;
-
 -- 티켓예매(가격선택) : seat(좌석 위치,좌석등급,가격) seatBlock(블록), seatRow(열), seatNumber(좌석 번호), games(누가,어디서,경기날짜.경기시작시간), purchase(취소기한) 
 
 
@@ -85,12 +86,12 @@ left join seatRow c on c.seq = a.seatRow_seq
 SELECT
 	a.seq
     ,a.name
-    ,b.number
-    ,a.email
+	,(SELECT number FROM memberPhone aa where aa.member_seq= a.seq) as number
+	,a.email
 FROM member a
-left join memberPhone b on b.member_seq = a.seq
-where 1=1
-	and a.seq=2		
+-- left join memberPhone b on b.member_seq = a.seq
+WHERE 1=1
+	AND a.seq=2
 ;
 
 -- 비밀번호 변경

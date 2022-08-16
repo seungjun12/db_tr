@@ -18,3 +18,14 @@ left join memberPhone b on b.seq = a.seq
 
 -- 회원가입
 
+-- dfny 연습
+SELECT
+	a.seq
+    ,a.name
+    ,b.dfny
+    ,b.number
+FROM member a
+JOIN memberPhone b on b.member_seq=a.seq
+WHERE 1=1
+-- AND dfny=1
+;    
