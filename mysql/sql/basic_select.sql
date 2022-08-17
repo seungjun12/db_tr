@@ -29,3 +29,26 @@ JOIN memberPhone b on b.member_seq=a.seq
 WHERE 1=1
 -- AND dfny=1
 ;    
+
+-- UNION
+SELECT
+	teamLogo
+FROM teamLogo
+UNION
+SELECT
+	dob
+FROM games
+;    
+
+SELECT
+	name
+    ,id
+    ,pwd
+FROM member
+UNION ALL
+SELECT  
+	registerNumber
+    ,registerName
+    ,dateUse
+FROM registerConfirm
+;	
