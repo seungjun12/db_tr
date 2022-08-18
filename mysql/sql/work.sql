@@ -616,3 +616,35 @@ ENGINE = InnoDB
 alter table teamLogo CHANGE COLUMN teamLogoKiwoom teamLogo varchar(45);
 
 ALTER TABLE teamLogo DROP COLUMN teamLogoSeoul; 
+
+CREATE TABLE IF NOT EXISTS `Incheon`.`gamesUploded` (
+  `seq` INT NOT NULL,
+  `type` TINYINT NULL,
+  `defaultNy` TINYINT NULL,
+  `sort` TINYINT NULL,
+  `orginalName` VARCHAR(45) NULL,
+  `uuidName` VARCHAR(45) NULL,
+  `ext` VARCHAR(45) NULL,
+  `size` INT NULL,
+  `delNy` TINYINT NOT NULL,
+  `pseq` INT NOT NULL,
+  PRIMARY KEY (`seq`))
+ENGINE = InnoDB
+;
+
+CREATE TABLE IF NOT EXISTS `Incheon`.`gamesUploded` (
+  `seq` INT NOT NULL AUTO_INCREMENT,
+  `type` TINYINT NULL,
+  `defaultNy` TINYINT NULL,
+  `sort` TINYINT NULL,
+  `orginalName` VARCHAR(45) NULL,
+  `uuidName` VARCHAR(45) NULL,
+  `ext` VARCHAR(45) NULL,
+  `size` INT NULL,
+  `delNy` TINYINT NOT NULL,
+  `pseq` INT NOT NULL,
+  PRIMARY KEY (`seq`))
+ENGINE = InnoDB
+;
+
+ALTER TABLE gamesUploded MODIFY COLUMN size DOUBLE;
