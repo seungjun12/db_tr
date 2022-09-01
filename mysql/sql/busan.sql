@@ -2,12 +2,12 @@ USE Incheon;
 
 -- cc ccg 조인
 select
-	a.seq
-    ,a.ccgname
-    ,b.seq
+	a.ccgseq
+    ,a.ccgNameKo
+    ,b.ccseq
     ,b.ccname
 from ccg a
-left join cc b on b.ccg_seq = a.seq
+left join cc b on b.ccg_seq = a.ccgseq
 ;
 
 -- 로그인
@@ -115,4 +115,9 @@ where 1=1
 -- 아이디 찾기
 
 -- 비번 찾기
-	
+
+select
+	ccgNameKo
+    ,(select count(ccg_seq)  From  cc where 1=1 and ccg_seq=ccgseq) as ccg_seq
+from ccg
+;	
