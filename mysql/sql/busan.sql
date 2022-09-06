@@ -121,3 +121,17 @@ select
     ,(select count(ccg_seq)  From  cc where 1=1 and ccg_seq=ccgseq) as ccg_seq
 from ccg
 ;	
+
+INSERT INTO ccg(
+	ccgNameKo
+    ,ccgNameEg
+    ,ccguseNy
+    ,ccgdelNy
+)
+VALUES(
+	#{ccgNameKo}
+    ,#{ccgNameEg}
+    ,#{ccguseNy}
+    ,#{ccgdelNy}
+)
+;
