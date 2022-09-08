@@ -91,7 +91,7 @@ SELECT
 FROM member a
 -- left join memberPhone b on b.member_seq = a.seq
 WHERE 1=1
-	AND a.seq=2
+	AND a.seq=4
 ;
 
 -- 비밀번호 변경
@@ -129,9 +129,16 @@ INSERT INTO ccg(
     ,ccgdelNy
 )
 VALUES(
-	#{ccgNameKo}
-    ,#{ccgNameEg}
-    ,#{ccguseNy}
-    ,#{ccgdelNy}
+	"시험"
+    ,"example"
+    ,0
+    ,0
 )
 ;
+
+-- 회원관리
+select
+	a.*
+    ,(select number from memberPhone aa   WHERE 1=1 and aa.seqOther =a.seq)as number
+from member a
+;   
