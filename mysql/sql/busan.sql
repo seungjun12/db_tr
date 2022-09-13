@@ -142,3 +142,10 @@ select
     ,(select number from memberPhone aa   WHERE 1=1 and aa.seqOther =a.seq)as number
 from member a
 ;   
+
+-- 코드 리스트
+select
+	a.*
+    ,(select ccgNameKo from ccg aa where 1=1 and aa.ccgseq = a.ccg_seq)as ccgNameKo
+from cc a
+;
