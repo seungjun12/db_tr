@@ -5,7 +5,8 @@ select
 	a.ccgseq
     ,a.ccgNameKo
     ,b.ccseq
-    ,b.ccname
+    ,b.ccnameko
+    ,b.ccg_seq
 from ccg a
 left join cc b on b.ccg_seq = a.ccgseq
 ;
@@ -149,3 +150,7 @@ select
     ,(select ccgNameKo from ccg aa where 1=1 and aa.ccgseq = a.ccg_seq)as ccgNameKo
 from cc a
 ;
+
+-- 회원가입
+SELECT
+	a
