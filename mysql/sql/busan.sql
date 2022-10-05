@@ -100,7 +100,7 @@ WHERE 1=1
 
 -- 예약정보 확인
 select
-	a.seq
+	a.regseq
     ,a.registerDob
     ,a.registerNumber
     ,a.registerName
@@ -110,7 +110,6 @@ select
     ,a.state
 FROM registerConfirm a
 where 1=1
-	and a.seq = 2
 ;    
 
 -- 아이디 찾기
